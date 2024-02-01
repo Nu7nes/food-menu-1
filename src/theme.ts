@@ -1,13 +1,15 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
-    // styles: {
-    //     global: {
-    //         'html, body': {
-    //             fontFamily: 'Times News Romam'
-    //         }
-    //     }
-    // },
+    styles: {
+        global: {
+            '*': {
+                margin: 0,
+                padding: 0,
+                boxSizing: 'border-box'
+            }
+        }
+    },
 
     colors: {
         white: '#ffffff',
@@ -18,7 +20,7 @@ export const theme = extendTheme({
             200: '#FF9393',
             300: "#DC0000",
             400: "#A20000",
-            500: "#850000",
+            500: "#850000"
         },
         gray: {
             100: '#F4F4F4',
