@@ -1,15 +1,21 @@
 // import { Box, Button, Heading, Text, Flex } from "@chakra-ui/react";
 // import { Icon } from "@iconify/react";
+import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import Header from "./components/Header"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
+// import DrawerInformation from "./components/Drawer";
+// import { useRef } from "react";
 // import { Box, Heading } from "@chakra-ui/react";
 
 function App() {
-    // const [count, setCount] = React.useState(0);
+    // const [isLargerThan480]: boolean[] = useMediaQuery('(min-width: 480px)')
+    // const {isOpen, onOpen, onClose} = useDisclosure()
+    // const btnRef = useRef()
 
     return (
         <BrowserRouter>
-            <Header></Header>
+            <Header ></Header>
+            {/* {isLargerThan480 ? <></> : <DraCwerInformation btnRef={btnRef}/>} */}
             {/* <Routes>
                 <Route
                     path="/"

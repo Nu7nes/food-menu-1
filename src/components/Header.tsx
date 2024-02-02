@@ -1,40 +1,47 @@
-import { Box, Button, Flex, Image, Img, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, useBreakpointValue } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
+import { displayBreakpoint } from "../assets/chakra/breakepoints";
 import logo from "../assets/logo.svg";
 import wave_top from "../assets/wave_top_first.svg";
 import { ReactElement } from "react";
 
 export default function Header(): ReactElement {
+    const breakpoints: string | undefined = useBreakpointValue(displayBreakpoint);
 
-    const displayBreakpoint: string | undefined = useBreakpointValue({
-        base: 'block',
-        sm: 'block',
-        md: 'none'
-    })
-    
     return (
         <Box>
             <Flex
                 justify="space-between"
                 align="center"
                 bg="red.400"
-                h="80px"
-                pt={3}
-                px={3}
+                // h="30px"
+                pt={[8, 4]}
+                pb={[6, 4]}
+                px={[4, 1, 0]}
+                shadow={["lg", ""]}
             >
                 <Image
                     src={logo}
                     alt="Logo Tapioca da Jessica"
-                    h={[10, 35, 35]}
-                    // maxH="100%"
+                    h={[59]}
                     objectFit="cover"
                     ml="3"
                 />
-                <Button size="" p={0} mr={3} variant="link" color="white" display={displayBreakpoint}>
+                <Button
+                    size="sm"
+                    mr={3}
+                    colorScheme="red.400"
+                    boxShadow="dark-lg"
+                    display={breakpoints}
+                >
                     <Icon icon="mingcute:menu-fill" />
                 </Button>
             </Flex>
-            <Image src={wave_top} width="100%" display={displayBreakpoint}/>
+            <Image
+                src={wave_top}
+                width="100%"
+                display={breakpoints}
+            />
         </Box>
     );
 }
