@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, RefObject } from "react";
 import {
     Drawer,
     DrawerOverlay,
@@ -11,7 +11,17 @@ import {
     Input,
 } from "@chakra-ui/react";
 
-function DrawerInformation({ isOpen, onClose, btnRef }): ReactElement {
+interface DrawerInformationProps {
+    isOpen: boolean;
+    onClose: () => void;
+    btnRef: RefObject<HTMLButtonElement>;
+}
+
+function DrawerInformation({
+    isOpen,
+    onClose,
+    btnRef,
+}: DrawerInformationProps): ReactElement {
     return (
         <Drawer
             isOpen={isOpen}
