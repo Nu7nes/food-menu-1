@@ -43,6 +43,7 @@ export const theme = extendTheme({
     },
 
     fonts: {
-        body: "Kumbh Sans"      
+        heading: `"Kumbh Sans", sans-serif`,
+        body: `"Kumbh Sans", sans-serif`      
     },
 });

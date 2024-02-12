@@ -5,6 +5,6 @@ export const displayBreakpoint: {
     md: string
 } = {
     base: "block",
-    sm: "none",
+    sm: "block",
     md: "none",
 };
