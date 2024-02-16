@@ -12,7 +12,8 @@ export default function Aside(): ReactElement {
 
     return (
         <VStack
-            m={3}
+            my={3}
+            px={4}
             color="white"
             minW={['auto', "330px"]}
             pt={[0, 10]}

@@ -5,7 +5,6 @@ import Aside from "./components/Aside";
 import Main from "./components/Main";
 
 function App() {
-    // const [count, setCount] = React.useState(0);
     const [isLargerThan448]: boolean[] = useMediaQuery("(min-width: 768px)");
 
     return (
