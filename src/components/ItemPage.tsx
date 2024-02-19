@@ -1,7 +1,6 @@
 import {
     Drawer,
     DrawerBody,
-    DrawerHeader,
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
@@ -17,12 +16,11 @@ import { ReactElement, useRef } from "react";
 import { theme } from "../theme";
 import ItemPageHeading from "./ItemPageHeading";
 import AddsTable from "./AddsTable";
+import { AddItemButton } from "./CustomButtons";
 
 export default function ItemPage(): ReactElement {
     const { isOpen, onOpen, onClose }: UseDisclosureProps = useDisclosure();
     const btnRef = useRef<HTMLButtonElement>(null);
-
-
     return (
         <>
             <IconButton
@@ -62,34 +60,55 @@ export default function ItemPage(): ReactElement {
                     >
                         <Icon icon="mdi:arrow-left-thick" fontSize={30} />
                     </DrawerCloseButton>
-                    <DrawerHeader p={0} borderBottom="3px solid gray">
-                        <Image
-                            w={"full"}
-                            src="https://www.nacozinhadahelo.com.br/wp-content/uploads/2022/08/como-fazer-tapioca.jpg"
-                            alt="Logo Tapioca da Jessica"
-                            h={[150]}
-                            objectFit="cover"
-                        />
-                    </DrawerHeader>
 
                     <DrawerBody p={0}>
+                    <Image
+                        w={"full"}
+                        src="https://www.nacozinhadahelo.com.br/wp-content/uploads/2022/08/como-fazer-tapioca.jpg"
+                        alt="Logo Tapioca da Jessica"
+                        h={150}
+                        objectFit="cover"
+                    />
                         <ItemPageHeading />
                         <Box my={5}>
-                            <Heading ml={5} size="x1">Adicione sem custo:</Heading>
+                            <Heading ml={5} size="x1">
+                                Adicione sem custo:
+                            </Heading>
                             <AddsTable />
                         </Box>
                         <Box>
-                            <Heading ml={5} size="x1">Adicionais:</Heading>
+                            <Heading ml={5} size="x1">
+                                Adicionais:
+                            </Heading>
                             <AddsTable />
                         </Box>
+                        <Box>
+                            <Heading ml={5} size="x1">
+                                Adicionais:
+                            </Heading>
+                            <AddsTable />
+                        </Box>
+                        <Box>
+                            <Heading ml={5} size="x1">
+                                Adicionais:
+                            </Heading>
+                            <AddsTable />
+                        </Box>
+                        <Box>
+                            <Heading ml={5} size="x1">
+                                Adicionais:
+                            </Heading>
+                            <AddsTable />
+                        </Box>
+                        <Box>
+                            <Heading ml={5} size="x1">
+                                Adicionais:
+                            </Heading>
+                            <AddsTable />
+                        </Box>
+                    <AddItemButton />
                     </DrawerBody>
 
-                    {/* <DrawerFooter>
-                            <Button variant="outline" mr={3} onClick={onClose}>
-                                Cancel
-                            </Button>
-                            <Button colorScheme="blue">Save</Button>
-                        </DrawerFooter> */}
                 </DrawerContent>
             </Drawer>
         </>

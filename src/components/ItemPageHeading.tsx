@@ -12,7 +12,17 @@ export default function ItemPageHeading(): ReactElement {
     }
 
     return (
-        <Flex justify="space-between" align="center" bg="gray.100" p={5} px={8}>
+        <Flex
+            justify="space-between"
+            align="center"
+            bg="gray.100"
+            p={5}
+            px={8}
+            position="sticky"
+            top="0"
+            boxShadow="md"
+            zIndex="10"
+        >
             <VStack align="flex-start">
                 <Text fontSize={12} pl={1} mb={-1}>
                     Tapioca
