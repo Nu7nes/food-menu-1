@@ -1,15 +1,39 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Flex, VStack, Text, Heading, IconButton } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { theme } from "../theme";
+import { ItemType } from "./ListItem";
+import { useFormContext } from "react-hook-form";
 
-export default function ItemPageHeading(): ReactElement {
+export default function ItemPageHeading({
+    flavor,
+    price,
+    type,
+    adds,
+}: ItemType): ReactElement {
     const [counter, setCounter] = useState<number>(1);
+    // const [addsPrice, setAddsPrice] = useState<number>(1);
+    const { setValue, getValues, watch } = useFormContext();
+    setValue("flavor", flavor);
 
     function handleCounterComponent(operation: number): void {
-        const result = counter + operation < 0 ? 0 : counter + operation;
+        const result = counter + operation < 1 ? 1 : counter + operation;
         setCounter(result);
     }
+
+    useEffect(() => {
+        setValue("quantity", counter);
+        let totalPrice: number = 0;
+        if (typeof price == "number")
+            totalPrice =
+                price * Number(getValues("quantity")) +
+                Number(getValues("addsPrice"));
+        setValue("price", totalPrice);
+    }, [counter, watch("addsPrice")]);
+
+    useEffect(() => {
+        setValue("addsPrice", 0);
+    }, []);
 
     return (
         <Flex
@@ -27,13 +51,13 @@ export default function ItemPageHeading(): ReactElement {
                 <Text fontSize={12} pl={1} mb={-1}>
                     Tapioca
                 </Text>
-                <Heading size="md">Frango com Queijo</Heading>
+                <Heading size="md">{flavor}</Heading>
                 <VStack align="flex-start" fontSize={12} lineHeight={0.8} m={2}>
-                    <Text>+ Escolha seu queijo</Text>
-                    <Text>+ Adicionais disponíveis</Text>
+                    {type === "sal" && <Text>+ Escolha seu queijo</Text>}
+                    {adds && <Text>+ Adicionais disponíveis</Text>}
                 </VStack>
                 <Text fontWeight="800" color="red.300">
-                    R$12,00
+                    {`R$${watch("price")}`}
                 </Text>
             </VStack>
             <VStack>

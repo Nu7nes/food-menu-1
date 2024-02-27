@@ -5,7 +5,7 @@ import wave_top from "../assets/wave_top_first.svg";
 import { ReactElement, useEffect, useState } from "react";
 import CustomDrawer from "./CustomDrawer";
 import { motion } from "framer-motion";
-
+import Aside from "./Aside";
 
 export default function Header(): ReactElement {
     const breakpoints: string | undefined =
@@ -43,7 +43,9 @@ export default function Header(): ReactElement {
                     animate={scrollTop > 0 ? { height: 40 } : ""}
                     transition="50ms linear"
                 />
-                <CustomDrawer />
+                <CustomDrawer hasLogo={true} button="menu">
+                    <Aside />
+                </CustomDrawer>
             </Flex>
             <Image
                 src={wave_top}
@@ -51,6 +53,7 @@ export default function Header(): ReactElement {
                 // transform="scale: 0.2"
                 display={breakpoints}
                 as={motion.img}
+                transform="translateY(-1px)"
                 transformOrigin="top"
                 animate={scrollTop > 0 ? { scaleY: 0 } : ""}
                 transition="10ms linear"

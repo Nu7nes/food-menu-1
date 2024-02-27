@@ -3,9 +3,25 @@ import Header from "./components/Header";
 import { BrowserRouter } from "react-router-dom";
 import Aside from "./components/Aside";
 import Main from "./components/Main";
+import CustomDrawer from "./components/CustomDrawer";
+import Cart from "./components/Cart";
+import { useDispatch } from "react-redux";
+import Api from "./data/firebaseConfig";
+import { useEffect } from "react";
+import { addData } from "./store/slices/dataSlice";
 
 function App() {
     const [isLargerThan448]: boolean[] = useMediaQuery("(min-width: 768px)");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        async function dataHandler() {
+            const api = new Api();
+            const data = await api.getData();
+            dispatch(addData(data))
+        }
+        dataHandler();
+    }, []);
 
     return (
         <BrowserRouter>
@@ -26,6 +42,9 @@ function App() {
             ) : (
                 <Main />
             )}
+            <CustomDrawer hasLogo={false} button="cart" header="Pedidos">
+                <Cart />
+            </CustomDrawer>
         </BrowserRouter>
     );
 }

@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { itemTypes } from "../pages/ListFeatured";
 import {
     Card,
     CardBody,
@@ -11,11 +10,22 @@ import {
 } from "@chakra-ui/react";
 import ItemPage from "./ItemPage";
 
-export default function ListItem({
-    name,
-    description,
-    price,
-}: itemTypes): ReactElement {
+export type ItemType = {
+    type?: string;
+    desc?: string;
+    flavor?: string;
+    price?: string;
+    adds?: boolean;
+    ingredients?: string[]
+    counter?: number
+    onHandleCounterComponent?:((operation: number) => void)
+};
+
+export interface ItemListProps {
+    item: ItemType
+}
+
+export default function ListItem({ item }: ItemListProps): ReactElement {
     return (
         <Card
             direction="row"
@@ -34,18 +44,18 @@ export default function ListItem({
                 borderRadius={8}
             />
             <CardBody mr={0}>
-                <Heading size={"xs"}>{name}</Heading>
+                <Heading size={"xs"}>{item.flavor}</Heading>
                 <Text fontSize={"0.8rem"} lineHeight={1} color="gray.400">
-                    {description}
+                    {item.desc}
                 </Text>
                 <Text
                     fontWeight="bold"
                     fontSize={"0.8rem"}
                     color={theme.colors.red[500]}
-                >{`R$${price},00`}</Text>
+                >{`R$${item.price}`}</Text>
             </CardBody>
             <CardFooter m={-1}>
-                <ItemPage />
+                <ItemPage item={item}/>
             </CardFooter>
         </Card>
     );

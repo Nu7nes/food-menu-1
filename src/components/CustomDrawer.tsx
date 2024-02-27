@@ -1,9 +1,7 @@
 import {
-    Box,
     Button,
     Drawer,
     DrawerBody,
-    DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
@@ -12,14 +10,26 @@ import {
     useDisclosure,
     useBreakpointValue,
     Image,
+    Heading,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ReactElement, useRef } from "react";
 import { displayBreakpoint } from "../chakra/breakepoints";
 import logo from "../assets/logo.svg";
-import Aside from "./Aside";
 
-export default function CustomDrawer(): ReactElement {
+interface CustomDrawerProps {
+    children: ReactElement;
+    button: string;
+    hasLogo: boolean;
+    header?: string;
+}
+
+export default function CustomDrawer({
+    children,
+    button,
+    hasLogo,
+    header,
+}: CustomDrawerProps): ReactElement {
     const { isOpen, onOpen, onClose }: UseDisclosureProps = useDisclosure();
     const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -28,53 +38,73 @@ export default function CustomDrawer(): ReactElement {
 
     return (
         <>
-            <Button
-                ref={btnRef}
-                onClick={onOpen}
-                size="sm"
-                mr={3}
-                colorScheme="red.400"
-                boxShadow="dark-lg"
-                display={breakpoints}
-            >
-                <Icon icon="mingcute:menu-fill" />
-            </Button>
+            {button == "cart" && (
+                <Button
+                    ref={btnRef}
+                    onClick={onOpen}
+                    aria-label="cart-button"
+                    colorScheme="red"
+                    position="fixed"
+                    bottom="2rem"
+                    right="2rem"
+                    rounded={100}
+                    height="4rem"
+                    width="4rem"
+                    boxShadow="dark-lg"
+                >
+                    <Icon icon="solar:cart-3-bold" height="2.4rem" />
+                </Button>
+            )}
+            {button == "menu" && (
+                <Button
+                    ref={btnRef}
+                    onClick={onOpen}
+                    size="sm"
+                    mr={3}
+                    colorScheme="red.400"
+                    boxShadow="dark-lg"
+                    display={breakpoints}
+                >
+                    <Icon icon="mingcute:menu-fill" />
+                </Button>
+            )}
             <Drawer
                 isOpen={isOpen}
                 placement="right"
                 onClose={onClose}
                 finalFocusRef={btnRef}
-                size="xl"
+                size={button == "cart" ? "md" : "xl"}
             >
-                    <DrawerOverlay />
-                    <DrawerContent bg="red.400">
-                        <DrawerCloseButton
-                            color="white"
-                            colorScheme="red.400"
-                            m={6}
-                            mt={8}
-                            boxShadow="dark-lg"
-                        />
-                        <DrawerHeader m={3} pl={8}>
+                <DrawerOverlay />
+                <DrawerContent bg="red.400">
+                    <DrawerCloseButton
+                        color="white"
+                        colorScheme="red.400"
+                        m={6}
+                        mt={8}
+                        boxShadow="dark-lg"
+                    />
+                    <DrawerHeader m={3} pl={8}>
+                        {hasLogo && (
                             <Image
                                 src={logo}
                                 alt="Logo Tapioca da Jessica"
                                 h={[59]}
                                 objectFit="cover"
                             />
-                        </DrawerHeader>
+                        )}
+                        {header && <Heading color="white" mt={2}>{header}</Heading>}
+                    </DrawerHeader>
 
-                        <DrawerBody>
-                            <Aside />
-                        </DrawerBody>
+                    <DrawerBody>{children}</DrawerBody>
 
-                        {/* <DrawerFooter>
+                    {/* <DrawerFooter>
                             <Button variant="outline" mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
                             <Button colorScheme="blue">Save</Button>
                         </DrawerFooter> */}
-                    </DrawerContent>
+                </DrawerContent>
             </Drawer>
         </>
     );
