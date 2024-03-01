@@ -96,7 +96,7 @@ export default function CustomDrawer({
                         {header && <Heading color="white" mt={2}>{header}</Heading>}
                     </DrawerHeader>
 
-                    <DrawerBody>{children}</DrawerBody>
+                    <DrawerBody px={0} pb={0}>{children}</DrawerBody>
 
                     {/* <DrawerFooter>
                             <Button variant="outline" mr={3} onClick={onClose}>

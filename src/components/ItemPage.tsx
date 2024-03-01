@@ -10,6 +10,8 @@ import {
     Image,
     Box,
     Heading,
+    useToast,
+    ToastId,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ReactElement, useRef } from "react";
@@ -36,15 +38,23 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
     const { isOpen, onOpen, onClose }: UseDisclosureProps = useDisclosure();
     const btnRef = useRef<HTMLButtonElement>(null);
     const methods = useForm();
-    const dispatch = useDispatch()
-    // const [data, setData]: DataProps = useState({
-    //     flavor: item.flavor,
-    //     price: item.price,
-    // })
-    function submitHandler(data: FieldValues): void {
-        dispatch(addItemOnCart(data))
-        // console.log(data);
+    const dispatch = useDispatch();
+    const toast = useToast();
 
+    function submitHandler(data: FieldValues): ToastId {
+        dispatch(addItemOnCart(data));
+        if (onClose) onClose();
+
+        return toast({
+            title: "Item adicionado a sua sacola.",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom",
+            containerStyle: {
+                my: "2rem",
+            },
+        });
     }
 
     return (
@@ -135,7 +145,10 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                                         <Heading ml={5} size="x1">
                                             Adicione sem custo:
                                         </Heading>
-                                        <AddsTable isAdds={true} type="increment"/>
+                                        <AddsTable
+                                            isAdds={true}
+                                            type="increment"
+                                        />
                                     </Box>
                                 </>
                             )}
@@ -145,7 +158,10 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                                         <Heading ml={5} size="x1">
                                             Adicionais:
                                         </Heading>
-                                        <AddsTable isAdds={true} type="paidIncrement"/>
+                                        <AddsTable
+                                            isAdds={true}
+                                            type="paidIncrement"
+                                        />
                                     </Box>
                                 </>
                             )}
