@@ -9,8 +9,6 @@ import { useDispatch } from "react-redux";
 import Api from "./data/firebaseConfig";
 import { useEffect } from "react";
 import { addData } from "./store/slices/dataSlice";
-import CustomAlert from "./components/CustomToast";
-import CustomToast from "./components/CustomToast";
 
 function App() {
     const [isLargerThan448]: boolean[] = useMediaQuery("(min-width: 768px)");

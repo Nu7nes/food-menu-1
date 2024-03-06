@@ -1,7 +1,9 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import goma from "../assets/goma.jpg";
-import { Icon } from "@iconify/react";
+// import { Icon } from "@iconify/react";
+import CustomDrawer from "./CustomDrawer";
+import InfoPost from "./InfoPost";
 
 export default function InfoCard({width} : {width: number}): ReactElement {
     return (
@@ -34,7 +36,7 @@ export default function InfoCard({width} : {width: number}): ReactElement {
                     produção diferentes impactam em varios aspectos no produto
                     final.
                 </Text>
-                <Button
+                {/* <Button
                     alignSelf="flex-end"
                     colorScheme="red"
                     w="50%"
@@ -47,7 +49,11 @@ export default function InfoCard({width} : {width: number}): ReactElement {
                     }
                 >
                     Saiba mais
-                </Button>
+                </Button> */}
+                <CustomDrawer hasLogo={true} button="infoPost">
+                    <InfoPost />
+                </CustomDrawer>
+                
             </Flex>
         </Box>
     );

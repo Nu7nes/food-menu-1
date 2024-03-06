@@ -38,7 +38,7 @@ export default function CustomDrawer({
 
     return (
         <>
-            {button == "cart" && (
+            {button === "cart" && (
                 <Button
                     ref={btnRef}
                     onClick={onOpen}
@@ -55,7 +55,26 @@ export default function CustomDrawer({
                     <Icon icon="solar:cart-3-bold" height="2.4rem" />
                 </Button>
             )}
-            {button == "menu" && (
+            {button === "infoPost" && (
+                <Button
+                    ref={btnRef}
+                    onClick={onOpen}
+                    aria-label="cart-button"
+                    alignSelf="flex-end"
+                    colorScheme="red"
+                    w="50%"
+                    h={8}
+                    m={1}
+                    rounded={100}
+                    fontSize="14px"
+                    rightIcon={
+                        <Icon icon="mdi:about-circle-outline" fontSize={18} />
+                    }
+                >
+                    Saiba mais
+                </Button>
+            )}
+            {button === "menu" && (
                 <Button
                     ref={btnRef}
                     onClick={onOpen}

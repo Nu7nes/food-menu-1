@@ -2,7 +2,7 @@ import { ReactElement, useRef } from "react";
 import InfoCard from "../components/InfoCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Box, useMediaQuery } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 
 
@@ -16,7 +16,7 @@ const cardDimnetions: {
 
 
 export default function CustomSwipper(): ReactElement {
-    const [isLargerThan448]: boolean[] = useMediaQuery("(min-width: 448px)");
+    // const [isLargerThan448]: boolean[] = useMediaQuery("(min-width: 448px)");
     const elementRef = useRef<HTMLDivElement>(null);
     const dimensions = useSize(elementRef);
 

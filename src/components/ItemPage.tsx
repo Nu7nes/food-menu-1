@@ -64,6 +64,8 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                 bg="red.300"
                 boxShadow="dark-lg"
                 rounded={100}
+                h="2rem"
+                w="2rem"
                 size="xs"
                 aria-label="add-button"
                 ref={btnRef}
@@ -71,7 +73,7 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
             >
                 <Icon
                     icon="mdi:add-bold"
-                    height="1rem"
+                    height="1.5rem"
                     color={theme.colors.white}
                 />
             </IconButton>

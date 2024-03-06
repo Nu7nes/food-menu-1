@@ -86,7 +86,7 @@ export default function Cart(): ReactElement {
                             rightIcon={<Icon icon="solar:cart-3-bold" />}
                             type="submit"
                         >
-                            Adicionar à sacola
+                            Finalizar pedido
                         </Button>
                     </Flex>
                 </form>

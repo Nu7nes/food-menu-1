@@ -46,6 +46,7 @@ export default class Api {
         const data = {
             menu: await this.loadData("dataMenu"),
             adds: await this.loadData("adds"),
+            posts: await this.loadData("posts"),
         };
         return data;
     }
