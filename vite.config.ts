@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     host: true
   },
-  base: "/food-menu-1"
+  // base: "/food-menu-1"
 })

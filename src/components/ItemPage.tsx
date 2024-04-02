@@ -50,10 +50,10 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
             status: "success",
             duration: 5000,
             isClosable: true,
-            position: "bottom",
-            containerStyle: {
-                my: "2rem",
-            },
+            position: "top",
+            // containerStyle: {
+            //     my: "2rem",
+            // },
         });
     }
 
@@ -127,7 +127,7 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                             </Text>
                             <AddsTable isAdds={false} />
                         </Box> */}
-                            {item.ingredients && (
+                             {item.ingredients && (
                                 <>
                                     <Box my={5}>
                                         <Heading ml={5} size="x1">
@@ -136,7 +136,7 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                                         <AddsTable
                                             isAdds={false}
                                             ingredients={item.ingredients}
-                                            type="ingredients"
+                                            listType="ingredients"
                                         />
                                     </Box>
                                 </>
@@ -149,7 +149,7 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                                         </Heading>
                                         <AddsTable
                                             isAdds={true}
-                                            type="increment"
+                                            listType="increment"
                                         />
                                     </Box>
                                 </>
@@ -162,7 +162,8 @@ export default function ItemPage({ item }: ItemListProps): ReactElement {
                                         </Heading>
                                         <AddsTable
                                             isAdds={true}
-                                            type="paidIncrement"
+                                            listType="paidIncrement"
+                                            type={item.type}
                                         />
                                     </Box>
                                 </>

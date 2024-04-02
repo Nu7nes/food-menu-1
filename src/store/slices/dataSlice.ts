@@ -4,11 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface dataStateResponse {
     menu: DocumentData;
     adds: DocumentData;
+    posts: DocumentData;
 }
 
 const initialState: dataStateResponse = {
     menu: [],
     adds: [],
+    posts: [],
 };
 
 export const dataSlice = createSlice({
@@ -18,6 +20,7 @@ export const dataSlice = createSlice({
         addData: (state, { payload }: PayloadAction<dataStateResponse>) => {
             state.menu = payload.menu;
             state.adds = payload.adds[0];
+            state.posts = payload.posts;
         },
     },
 });

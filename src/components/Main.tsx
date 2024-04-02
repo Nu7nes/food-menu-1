@@ -12,7 +12,7 @@ export default function Main(): ReactElement {
             <Tabs />
             <Box>
                 <Routes>
-                    <Route path="/" element={<ListFeatured />} />
+                    <Route index path="/" element={<ListFeatured />} />
                     <Route path="/todos" element={<ListAll />} />
                 </Routes>
             </Box>

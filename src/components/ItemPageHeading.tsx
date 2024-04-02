@@ -57,7 +57,10 @@ export default function ItemPageHeading({
                     {adds && <Text>+ Adicionais disponíveis</Text>}
                 </VStack>
                 <Text fontWeight="800" color="red.300">
-                    {`R$${watch("price")}`}
+                    {Number(watch("price")).toLocaleString("pt-br", {
+                        style: "currency",
+                        currency: "BRL",
+                    })} 
                 </Text>
             </VStack>
             <VStack>

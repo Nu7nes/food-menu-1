@@ -21,7 +21,8 @@ interface AddsLineProps {
 interface AddsTableProps {
     isAdds: boolean;
     ingredients?: string[];
-    type: string;
+    listType: string;
+    type?: string;
 }
 
 function AddsLineElement({
@@ -31,16 +32,17 @@ function AddsLineElement({
     type,
 }: AddsLineProps): ReactElement {
     const { register, setValue, getValues } = useFormContext();
-    function handleItemPrice (event: React.ChangeEvent<HTMLInputElement>): void {
-        const checkbox = event.target
-        
-        if( type === "paidIncrement") {
-            let oldAddsPrice = isNaN(Number(getValues("addsPrice"))) ? 0 : Number(getValues("addsPrice")) 
-            if(checkbox.checked) {
-                setValue(`addsPrice`, oldAddsPrice + Number(checkbox.value))
-                
+    function handleItemPrice(event: React.ChangeEvent<HTMLInputElement>): void {
+        const checkbox = event.target;
+
+        if (type === "paidIncrement") {
+            let oldAddsPrice = isNaN(Number(getValues("addsPrice")))
+                ? 0
+                : Number(getValues("addsPrice"));
+            if (checkbox.checked) {
+                setValue(`addsPrice`, oldAddsPrice + Number(checkbox.value));
             } else {
-                setValue(`addsPrice`, oldAddsPrice - Number(checkbox.value))
+                setValue(`addsPrice`, oldAddsPrice - Number(checkbox.value));
             }
         }
     }
@@ -53,7 +55,7 @@ function AddsLineElement({
                 defaultChecked={!isChecked}
                 zIndex="0"
                 value={price}
-                {...register(`${type}.${name}`, {onChange: handleItemPrice})}
+                {...register(`${type}.${name}`, { onChange: handleItemPrice })}
             />
             <Text>{name}</Text>
             {price ? <Text>{price}</Text> : <Box w={"10%"}></Box>}
@@ -64,6 +66,7 @@ function AddsLineElement({
 export default function AddsTable({
     isAdds,
     ingredients,
+    listType,
     type,
 }: AddsTableProps): ReactElement {
     const adds = useSelector((state: RootState) => state.data.adds);
@@ -84,7 +87,7 @@ export default function AddsTable({
                         name={it}
                         isChecked={isAdds}
                         key={it}
-                        type={type}
+                        type={listType}
                     />
                 ))}
             </VStack>
@@ -99,25 +102,41 @@ export default function AddsTable({
             borderRadius={10}
             divider={<StackDivider borderColor="gray.200" />}
         >
-            {type === "increment" &&
+            {listType === "increment" &&
                 adds.increment.map((it: string) => (
                     <AddsLineElement
                         key={it}
                         name={it}
                         isChecked={isAdds}
-                        type={type}
+                        type={listType}
                     />
                 ))}
-                {type === "paidIncrement" &&
-                adds.paidIncrement.map((it: {name: string, price: number}) => (
-                    <AddsLineElement
-                        key={it.name}
-                        name={it.name}
-                        price={it.price}
-                        isChecked={isAdds}
-                        type={type}
-                    />
-                ))}
+            {(listType === "paidIncrement" &&
+                type === "sal" &&
+                adds.paidIncrement.salt.map(
+                    (it: { name: string; price: number }) => (
+                        <AddsLineElement
+                            key={it.name}
+                            name={it.name}
+                            price={it.price}
+                            isChecked={isAdds}
+                            type={listType}
+                        />
+                    )
+                )) ||
+                (listType === "paidIncrement" &&
+                    type === "doce" &&
+                    adds.paidIncrement.sugar.map(
+                        (it: { name: string; price: number }) => (
+                            <AddsLineElement
+                                key={it.name}
+                                name={it.name}
+                                price={it.price}
+                                isChecked={isAdds}
+                                type={listType}
+                            />
+                        )
+                    ))}
         </VStack>
     );
 }

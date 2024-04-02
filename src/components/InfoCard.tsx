@@ -4,8 +4,14 @@ import goma from "../assets/goma.jpg";
 // import { Icon } from "@iconify/react";
 import CustomDrawer from "./CustomDrawer";
 import InfoPost from "./InfoPost";
+import { DocumentData } from "firebase/firestore";
 
-export default function InfoCard({width} : {width: number}): ReactElement {
+interface InfoCardProps {
+    width: number
+    data: DocumentData
+}
+
+export default function InfoCard({width, data} : InfoCardProps): ReactElement {
     return (
         <Box
             bgImage={`url(${goma})`}
@@ -29,12 +35,10 @@ export default function InfoCard({width} : {width: number}): ReactElement {
                 gap={3}
             >
                 <Heading fontSize="18px" lineHeight={1}>
-                    Já ouviu falar em goma de tapioca falsa?
+                    {data.title}
                 </Heading>
                 <Text fontSize="14px" lineHeight={1}>
-                    Por mais que no fim o resultado seja parecido, processos de
-                    produção diferentes impactam em varios aspectos no produto
-                    final.
+                    {data.field}
                 </Text>
                 {/* <Button
                     alignSelf="flex-end"

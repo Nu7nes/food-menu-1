@@ -16,18 +16,16 @@ export type ItemType = {
     flavor?: string;
     price?: string;
     adds?: boolean;
-    ingredients?: string[]
-    counter?: number
-    onHandleCounterComponent?:((operation: number) => void)
+    ingredients?: string[];
+    counter?: number;
+    onHandleCounterComponent?: (operation: number) => void;
 };
 
 export interface ItemListProps {
-    item: ItemType
+    item: ItemType;
 }
 
 export default function ListItem({ item }: ItemListProps): ReactElement {
-    
-
     return (
         <Card
             direction="row"
@@ -54,10 +52,15 @@ export default function ListItem({ item }: ItemListProps): ReactElement {
                     fontWeight="bold"
                     fontSize={"0.8rem"}
                     color={theme.colors.red[500]}
-                >{`R$${item.price}`}</Text>
+                >
+                    {Number(item.price).toLocaleString("pt-br", {
+                        style: "currency",
+                        currency: "BRL",
+                    })}
+                </Text>
             </CardBody>
             <CardFooter m={-1}>
-                <ItemPage item={item}/>
+                <ItemPage item={item} />
             </CardFooter>
         </Card>
     );
