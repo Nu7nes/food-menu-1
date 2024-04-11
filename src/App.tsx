@@ -1,6 +1,6 @@
 import { Grid, GridItem, useMediaQuery } from "@chakra-ui/react";
 import Header from "./components/Header";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Aside from "./components/Aside";
 import Main from "./components/Main";
 import CustomDrawer from "./components/CustomDrawer";
@@ -18,13 +18,14 @@ function App() {
         async function dataHandler() {
             const api = new Api();
             const data = await api.getData();
-            dispatch(addData(data))
+            dispatch(addData(data));
         }
         dataHandler();
     }, []);
 
     return (
-        <BrowserRouter>
+        // <BrowserRouter>
+        <HashRouter>
             <Header></Header>
             {isLargerThan448 ? (
                 <Grid
@@ -45,7 +46,8 @@ function App() {
             <CustomDrawer hasLogo={false} button="cart" header="Pedidos">
                 <Cart />
             </CustomDrawer>
-        </BrowserRouter>
+        </HashRouter>
+        // </BrowserRouter>
     );
 }
 
